@@ -2,15 +2,15 @@
 
 ## 1. Frontend and project foundation
 
-- [ ] 1.1 Replace the Node skeleton with a Vue 3 + Vite + TypeScript application, add development/build/test scripts, and verify the production build completes successfully.
-- [ ] 1.2 Define the application layout, entry/join views, room view, shared design tokens, and typed domain models; verify the expected routes/components render in component tests.
-- [ ] 1.3 Configure environment loading and `.env.example` for public Firebase settings without committing secrets; verify a clean checkout can start with documented placeholder configuration.
+- [x] 1.1 Replace the Node skeleton with a Vue 3 + Vite + TypeScript application, add development/build/test scripts, and verify the production build completes successfully.
+- [x] 1.2 Define the application layout, entry/join views, room view, shared design tokens, and typed domain models; verify the expected routes/components render in component tests.
+- [x] 1.3 Configure environment loading and `.env.example` for public Firebase settings without committing secrets; verify a clean checkout can start with documented placeholder configuration.
 
 ## 2. Domain and voting rules
 
-- [ ] 2.1 Implement typed room, participant, round, phase, and vote models with validation for room codes, names, avatars, participant sessions, and the Fibonacci set `[1, 2, 3, 5, 8, 13]`; verify invalid inputs are rejected by unit tests.
-- [ ] 2.2 Implement pure round transition logic for voting, vote replacement, reveal, and host-only reset; verify valid transitions and rejected transitions with unit tests.
-- [ ] 2.3 Implement mean, median, mode, and missing-vote calculations with deterministic formatting rules; verify odd/even counts, ties, empty results, and unvoted participants with unit tests.
+- [x] 2.1 Implement typed room, participant, round, phase, and vote models with validation for room codes, names, avatars, participant sessions, and the Fibonacci set `[1, 2, 3, 5, 8, 13]`; verify invalid inputs are rejected by unit tests.
+- [x] 2.2 Implement pure round transition logic for voting, vote replacement, reveal, and host-only reset; verify valid transitions and rejected transitions with unit tests.
+- [x] 2.3 Implement mean, median, mode, and missing-vote calculations with deterministic formatting rules; verify odd/even counts, ties, empty results, and unvoted participants with unit tests.
 
 ## 3. Firebase room synchronization
 
