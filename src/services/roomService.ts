@@ -1,16 +1,5 @@
-import {
-  onAuthStateChanged,
-  signInAnonymously,
-  type User,
-} from 'firebase/auth'
-import {
-  get,
-  onValue,
-  ref,
-  set,
-  update,
-  type Unsubscribe,
-} from 'firebase/database'
+import { onAuthStateChanged, signInAnonymously, type User } from 'firebase/auth'
+import { get, onValue, ref, set, update, type Unsubscribe } from 'firebase/database'
 import { auth, database } from '../lib/firebase'
 import {
   isFibonacciValue,
@@ -99,27 +88,36 @@ export async function createRoom(
     isHost: true,
   }
 
-  await set(roomReference, {
-    code: roomCode,
-    hostId: user.uid,
-    active: true,
-    expiresAt: Date.now() + 24 * 60 * 60 * 1000,
-    participants: {
-      [user.uid]: { ...participant, hasVoted: false },
-    },
-    round: {
-      id: `round-${Date.now()}`,
-      phase: 'voting',
-    },
-  })
+  try {
+    await set(roomReference, {
+      code: roomCode,
+      hostId: user.uid,
+      active: true,
+      expiresAt: Date.now() + 24 * 60 * 60 * 1000,
+      participants: {
+        [user.uid]: { ...participant, hasVoted: false },
+      },
+      round: {
+        id: `round-${Date.now()}`,
+        phase: 'voting',
+      },
+    })
+  } catch (cause) {
+    const existingRoom = await get(roomReference)
+    if (existingRoom.exists()) {
+      const room = normalizeRoom(existingRoom.val() as Record<string, unknown>)
+      if (room.hostId === user.uid) {
+        return user
+      }
+      throw new Error('Ese código de sala ya está en uso')
+    }
+    throw cause
+  }
 
   return user
 }
 
-export async function joinRoom(
-  roomCode: string,
-  identity: RoomIdentity,
-): Promise<User> {
+export async function joinRoom(roomCode: string, identity: RoomIdentity): Promise<User> {
   const user = await getCurrentUser()
   validateRoomInput(roomCode, identity)
 
@@ -150,9 +148,7 @@ export function subscribeToRoom(
 ): Unsubscribe {
   return onValue(ref(database, roomPath(roomCode)), (snapshot) => {
     callback(
-      snapshot.exists()
-        ? normalizeRoom(snapshot.val() as Record<string, unknown>)
-        : null,
+      snapshot.exists() ? normalizeRoom(snapshot.val() as Record<string, unknown>) : null,
     )
   })
 }
@@ -195,10 +191,7 @@ export async function submitVote(
   await Promise.all([
     set(ref(database, `${privateVotesPath(roomCode, roundId)}/${participantId}`), value),
     set(
-      ref(
-        database,
-        `${roomPath(roomCode)}/participants/${participantId}/hasVoted`,
-      ),
+      ref(database, `${roomPath(roomCode)}/participants/${participantId}/hasVoted`),
       true,
     ),
   ])

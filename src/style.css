@@ -109,7 +109,9 @@ h2 {
   border-radius: 999px;
   padding: 0.85rem 1.25rem;
   font-weight: 800;
-  transition: transform 160ms ease, filter 160ms ease;
+  transition:
+    transform 160ms ease,
+    filter 160ms ease;
 }
 
 .primary-button {

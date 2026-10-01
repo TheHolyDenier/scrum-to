@@ -1,0 +1,7 @@
+dist
+node_modules
+openspec
+.github
+.idea
+tsconfig*.json
+package-lock.json

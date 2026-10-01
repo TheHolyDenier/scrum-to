@@ -1,10 +1,6 @@
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
-import {
-  calculateVoteStatistics,
-  type FibonacciValue,
-  type Room,
-} from '../domain/room'
+import { calculateVoteStatistics, type FibonacciValue, type Room } from '../domain/room'
 import {
   createRoom,
   getCurrentUser,
@@ -30,9 +26,7 @@ export function useRoomSession() {
   let unsubscribeRoom: (() => void) | undefined
   let unsubscribeVotes: (() => void) | undefined
 
-  const currentParticipant = computed(() =>
-    room.value?.participants[currentUserId.value],
-  )
+  const currentParticipant = computed(() => room.value?.participants[currentUserId.value])
   const isHost = computed(
     () => currentUserId.value !== '' && room.value?.hostId === currentUserId.value,
   )
@@ -74,8 +68,7 @@ export function useRoomSession() {
           visibleParticipantIds,
           (nextVotes) => {
             votes.value = nextVotes
-            selectedVote.value =
-              nextVotes[currentUserId.value] ?? selectedVote.value
+            selectedVote.value = nextVotes[currentUserId.value] ?? selectedVote.value
           },
         )
       })
@@ -106,10 +99,7 @@ export function useRoomSession() {
 
   async function reset(): Promise<void> {
     if (!room.value || !isHost.value) return
-    await resetRoom(
-      roomCode,
-      Object.keys(room.value.participants),
-    )
+    await resetRoom(roomCode, Object.keys(room.value.participants))
     selectedVote.value = null
   }
 

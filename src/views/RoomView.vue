@@ -47,7 +47,9 @@ const {
           <h2 id="participants-title">Participantes</h2>
           <ul class="participant-list">
             <li v-for="participant in room.participants" :key="participant.id">
-              <span class="avatar">{{ participant.avatar.slice(0, 1).toUpperCase() }}</span>
+              <span class="avatar">{{
+                participant.avatar.slice(0, 1).toUpperCase()
+              }}</span>
               <span>
                 <strong>{{ participant.name }}</strong>
                 <small v-if="participant.id === currentParticipant?.id">Tú</small>
@@ -69,7 +71,11 @@ const {
             {{ room.round.phase === 'voting' ? 'Elige tu carta' : 'Resultados' }}
           </h2>
 
-          <div v-if="room.round.phase === 'voting'" class="card-row" aria-label="Valores Fibonacci">
+          <div
+            v-if="room.round.phase === 'voting'"
+            class="card-row"
+            aria-label="Valores Fibonacci"
+          >
             <button
               v-for="value in fibonacciValues"
               :key="value"
@@ -94,20 +100,40 @@ const {
               </span>
             </div>
             <dl v-if="statistics" class="statistics-grid">
-              <div><dt>Media</dt><dd>{{ statistics.mean ?? '—' }}</dd></div>
-              <div><dt>Mediana</dt><dd>{{ statistics.median ?? '—' }}</dd></div>
-              <div><dt>Moda</dt><dd>{{ statistics.mode ?? 'Sin moda única' }}</dd></div>
+              <div>
+                <dt>Media</dt>
+                <dd>{{ statistics.mean ?? '—' }}</dd>
+              </div>
+              <div>
+                <dt>Mediana</dt>
+                <dd>{{ statistics.median ?? '—' }}</dd>
+              </div>
+              <div>
+                <dt>Moda</dt>
+                <dd>{{ statistics.mode ?? 'Sin moda única' }}</dd>
+              </div>
             </dl>
             <p v-if="statistics" class="missing-votes">
-              {{ statistics.submittedCount }} votos · {{ statistics.missingCount }} sin votar
+              {{ statistics.submittedCount }} votos · {{ statistics.missingCount }} sin
+              votar
             </p>
           </div>
 
           <div class="room-actions">
-            <button v-if="isHost && room.round.phase === 'voting'" class="primary-button" type="button" @click="reveal">
+            <button
+              v-if="isHost && room.round.phase === 'voting'"
+              class="primary-button"
+              type="button"
+              @click="reveal"
+            >
               Revelar cartas
             </button>
-            <button v-if="isHost && room.round.phase === 'revealed'" class="primary-button" type="button" @click="reset">
+            <button
+              v-if="isHost && room.round.phase === 'revealed'"
+              class="primary-button"
+              type="button"
+              @click="reset"
+            >
               Nueva ronda
             </button>
           </div>
