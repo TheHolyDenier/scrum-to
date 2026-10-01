@@ -7,7 +7,7 @@ Esta capacidad define el ciclo de estimación: selección privada de una carta F
 ## ADDED Requirements
 
 ### Requirement: Participants can submit Fibonacci votes
-El sistema SHALL ofrecer los valores Fibonacci 1, 2, 3, 5, 8 y 13, y SHALL aceptar como máximo un voto activo por participante y ronda.
+El sistema SHALL ofrecer los valores Fibonacci 0.5, 1, 2, 3, 5, 8 y 13, y SHALL aceptar como máximo un voto activo por participante y ronda.
 
 #### Scenario: Participant submits a valid vote
 - **WHEN** a participant selects an available Fibonacci value during voting
@@ -30,7 +30,7 @@ El sistema SHALL ocultar el valor individual de cada voto durante la fase de vot
 
 #### Scenario: Reveal exposes the current round
 - **WHEN** the host reveals the round
-- **THEN** all participants see the submitted values for that round at the same time
+- **THEN** all participants see each submitted value associated with the participant who submitted it at the same time
 
 ### Requirement: The host can reset a revealed round
 El sistema SHALL allow the host to clear the current round and return the room to a fresh voting phase without carrying old votes into the next round.

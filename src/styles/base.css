@@ -1,0 +1,117 @@
+:root {
+  font-family: 'Trebuchet MS', ui-sans-serif, system-ui, sans-serif;
+  color: #fff8df;
+  background: #18120e;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  --color-ink: #21160f;
+  --color-cream: #fff8df;
+  --color-paper: #f9eed0;
+  --color-red: #e84855;
+  --color-blue: #2e86ab;
+  --color-yellow: #f5c451;
+  --color-green: #2c6e49;
+  --color-felt: #174a3d;
+  --color-felt-dark: #0b2a24;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  border: 0;
+  margin: -1px;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    radial-gradient(circle at 50% 0, #2c2018, #18120e 42rem);
+  background-size:
+    4px 4px,
+    4px 4px,
+    auto;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+input,
+select {
+  min-width: 0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  padding: 0.85rem 1rem;
+  color: var(--color-cream);
+  background: rgba(0, 0, 0, 0.25);
+}
+
+select option {
+  color: #24142d;
+}
+
+input:focus-visible,
+select:focus-visible,
+button:focus-visible {
+  outline: 3px solid #7fd5ff;
+  outline-offset: 3px;
+}
+
+.button {
+  border: 2px solid var(--color-ink);
+  border-radius: 0.7rem;
+  padding: 0.85rem 1.25rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition:
+    transform 140ms ease,
+    filter 140ms ease,
+    box-shadow 140ms ease;
+}
+
+.button:hover {
+  filter: brightness(1.08);
+  transform: translateY(-3px);
+}
+
+.button--primary {
+  color: var(--color-ink);
+  background: var(--color-yellow);
+  box-shadow: 0 5px 0 var(--color-ink);
+}
+
+.button--secondary {
+  color: var(--color-cream);
+  background: var(--color-blue);
+  box-shadow: 0 5px 0 var(--color-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

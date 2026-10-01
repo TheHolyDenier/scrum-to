@@ -1,6 +1,7 @@
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { calculateVoteStatistics, type FibonacciValue, type Room } from '../domain/room'
+import { getStoredIdentity } from '../lib/identity'
 import {
   createRoom,
   getCurrentUser,
@@ -10,7 +11,6 @@ import {
   subscribeToRoom,
   subscribeToVotes,
   submitVote,
-  type RoomIdentity,
 } from '../services/roomService'
 
 export function useRoomSession() {
@@ -121,22 +121,5 @@ export function useRoomSession() {
     vote,
     reveal,
     reset,
-  }
-}
-
-function getStoredIdentity(): RoomIdentity {
-  const storedIdentity = sessionStorage.getItem('scrumtro:identity')
-  if (!storedIdentity) {
-    return { name: 'Invitado', avatar: 'star' }
-  }
-
-  try {
-    const parsed = JSON.parse(storedIdentity) as Partial<RoomIdentity>
-    return {
-      name: parsed.name ?? 'Invitado',
-      avatar: parsed.avatar ?? 'star',
-    }
-  } catch {
-    return { name: 'Invitado', avatar: 'star' }
   }
 }

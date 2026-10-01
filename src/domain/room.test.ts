@@ -25,6 +25,7 @@ describe('room validation', () => {
     expect(isValidParticipantName('')).toBe(false)
     expect(isValidAvatar('robot')).toBe(true)
     expect(isValidAvatar('')).toBe(false)
+    expect(isFibonacciValue(0.5)).toBe(true)
     expect(isFibonacciValue(13)).toBe(true)
     expect(isFibonacciValue(4)).toBe(false)
   })

@@ -8,7 +8,7 @@
 
 ## 2. Domain and voting rules
 
-- [x] 2.1 Implement typed room, participant, round, phase, and vote models with validation for room codes, names, avatars, participant sessions, and the Fibonacci set `[1, 2, 3, 5, 8, 13]`; verify invalid inputs are rejected by unit tests.
+- [x] 2.1 Implement typed room, participant, round, phase, and vote models with validation for room codes, names, avatars, participant sessions, and the Fibonacci set `[0.5, 1, 2, 3, 5, 8, 13]`; verify invalid inputs are rejected by unit tests.
 - [x] 2.2 Implement pure round transition logic for voting, vote replacement, reveal, and host-only reset; verify valid transitions and rejected transitions with unit tests.
 - [x] 2.3 Implement mean, median, mode, and missing-vote calculations with deterministic formatting rules; verify odd/even counts, ties, empty results, and unvoted participants with unit tests.
 
@@ -26,8 +26,8 @@
 
 ## 5. Visual system, accessibility, and licensing
 
-- [ ] 5.1 Create original card/poker visual assets and document each non-code asset's source and license; verify no extracted Balatro assets, logos, characters, or proprietary artwork are included.
-- [ ] 5.2 Apply responsive layouts, semantic labels, keyboard focus states, contrast-safe colors, and reduced-motion behavior to the room and voting UI; verify keyboard navigation and narrow-viewport rendering with component/accessibility tests.
+- [x] 5.1 Create original card/poker visual assets and document each non-code asset's source and license; verify no extracted Balatro assets, logos, characters, or proprietary artwork are included.
+- [x] 5.2 Apply responsive layouts, semantic labels, keyboard focus states, contrast-safe colors, and reduced-motion behavior to the room and voting UI; verify keyboard navigation and narrow-viewport rendering with component/accessibility tests.
 - [ ] 5.3 Add concise local setup, Firebase configuration, free-tier limitations, room expiration behavior, and deployment documentation; verify each documented setup command is valid.
 
 ## 6. Integration and release checks

@@ -24,7 +24,7 @@
           "$uid": {
             ".read": "auth != null && (auth.uid == $uid || root.child('rooms').child($roomCode).child('round').child('phase').val() == 'revealed')",
             ".write": "auth != null && auth.uid == $uid && root.child('rooms').child($roomCode).child('participants').child(auth.uid).exists() && root.child('rooms').child($roomCode).child('round').child('id').val() == $roundId && root.child('rooms').child($roomCode).child('round').child('phase').val() == 'voting'",
-            ".validate": "newData.isNumber() && (newData.val() == 1 || newData.val() == 2 || newData.val() == 3 || newData.val() == 5 || newData.val() == 8 || newData.val() == 13)"
+            ".validate": "newData.isNumber() && (newData.val() == 0.5 || newData.val() == 1 || newData.val() == 2 || newData.val() == 3 || newData.val() == 5 || newData.val() == 8 || newData.val() == 13)"
           }
         }
       }

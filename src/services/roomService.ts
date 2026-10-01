@@ -1,6 +1,7 @@
 import { onAuthStateChanged, signInAnonymously, type User } from 'firebase/auth'
 import { get, onValue, ref, set, update, type Unsubscribe } from 'firebase/database'
 import { auth, database } from '../lib/firebase'
+import type { StoredIdentity } from '../lib/identity'
 import {
   isFibonacciValue,
   isValidAvatar,
@@ -12,10 +13,7 @@ import {
   type RoomRound,
 } from '../domain/room'
 
-export interface RoomIdentity {
-  name: string
-  avatar: string
-}
+export type RoomIdentity = StoredIdentity
 
 function normalizeRoom(snapshotValue: Record<string, unknown>): Room {
   const rawParticipants = (snapshotValue.participants ?? {}) as Record<
@@ -109,7 +107,7 @@ export async function createRoom(
       if (room.hostId === user.uid) {
         return user
       }
-      throw new Error('Ese código de sala ya está en uso')
+      throw new Error('Ese código de sala ya está en uso', { cause })
     }
     throw cause
   }

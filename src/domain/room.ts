@@ -1,4 +1,4 @@
-export const fibonacciValues = [1, 2, 3, 5, 8, 13] as const
+export const fibonacciValues = [0.5, 1, 2, 3, 5, 8, 13] as const
 
 export type FibonacciValue = (typeof fibonacciValues)[number]
 export type RoomPhase = 'voting' | 'revealed'
