@@ -1,0 +1,33 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "rooms": {
+      "$roomCode": {
+        ".read": "auth != null && data.exists() && data.child('active').val() == true && data.child('expiresAt').val() > now",
+        ".write": "auth != null && !data.exists() && newData.child('hostId').val() == auth.uid && newData.child('participants').child(auth.uid).exists()",
+        "participants": {
+          "$uid": {
+            ".write": "auth != null && root.child('rooms').child($roomCode).child('active').val() == true && (auth.uid == $uid || root.child('rooms').child($roomCode).child('hostId').val() == auth.uid)",
+            ".validate": "newData.hasChildren(['id', 'name', 'avatar', 'isHost', 'hasVoted']) && newData.child('id').val() == $uid && newData.child('name').isString() && newData.child('name').val().length >= 1 && newData.child('name').val().length <= 24 && newData.child('avatar').isString() && newData.child('avatar').val().length >= 1 && newData.child('avatar').val().length <= 32 && newData.child('hasVoted').isBoolean() && (!data.exists() || (newData.child('id').val() == data.child('id').val() && newData.child('name').val() == data.child('name').val() && newData.child('avatar').val() == data.child('avatar').val() && newData.child('isHost').val() == data.child('isHost').val()))"
+          }
+        },
+        "round": {
+          ".write": "auth != null && data.parent().child('hostId').val() == auth.uid",
+          ".validate": "newData.hasChildren(['id', 'phase']) && newData.child('id').isString() && (newData.child('phase').val() == 'voting' || newData.child('phase').val() == 'revealed')"
+        }
+      }
+    },
+    "roomVotes": {
+      "$roomCode": {
+        "$roundId": {
+          "$uid": {
+            ".read": "auth != null && (auth.uid == $uid || root.child('rooms').child($roomCode).child('round').child('phase').val() == 'revealed')",
+            ".write": "auth != null && auth.uid == $uid && root.child('rooms').child($roomCode).child('participants').child(auth.uid).exists() && root.child('rooms').child($roomCode).child('round').child('id').val() == $roundId && root.child('rooms').child($roomCode).child('round').child('phase').val() == 'voting'",
+            ".validate": "newData.isNumber() && (newData.val() == 1 || newData.val() == 2 || newData.val() == 3 || newData.val() == 5 || newData.val() == 8 || newData.val() == 13)"
+          }
+        }
+      }
+    }
+  }
+}

@@ -8,6 +8,7 @@ export interface Participant {
   name: string
   avatar: string
   isHost: boolean
+  hasVoted?: boolean
 }
 
 export interface RoomRound {

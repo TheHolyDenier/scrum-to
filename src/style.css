@@ -154,10 +154,45 @@ input {
   background: rgba(255, 255, 255, 0.08);
 }
 
+select {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  padding: 0.85rem 1rem;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+select option {
+  color: #24142d;
+}
+
 input:focus-visible,
+select:focus-visible,
 button:focus-visible {
   outline: 3px solid #7fd5ff;
   outline-offset: 3px;
+}
+
+.identity-form {
+  display: grid;
+  gap: 0.6rem;
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.identity-form label {
+  color: #c7bddb;
+  font-size: 0.9rem;
+}
+
+.form-error {
+  margin: 1rem 0 0;
+  color: #ff9da8;
+}
+
+.status-message {
+  padding: 2rem;
+  text-align: center;
 }
 
 .room-header {
@@ -186,11 +221,119 @@ button:focus-visible {
   padding: clamp(1.5rem, 5vw, 3rem);
 }
 
+.room-layout {
+  display: grid;
+  grid-template-columns: minmax(13rem, 0.7fr) minmax(0, 1.8fr);
+  gap: 1rem;
+}
+
+.participants-panel h2 {
+  font-size: 1.8rem;
+}
+
+.participant-list {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.participant-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: #fff;
+}
+
+.participant-list small {
+  display: block;
+  color: #c7bddb;
+}
+
+.avatar {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  place-items: center;
+  border-radius: 50%;
+  color: #24142d;
+  background: #ffd280;
+  font-weight: 900;
+}
+
+.vote-status {
+  margin-left: auto;
+  color: #8d829e;
+  font-size: 1.4rem;
+}
+
+.vote-status.voted {
+  color: #8be3b0;
+}
+
+.voting-panel {
+  min-width: 0;
+}
+
+.room-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.playing-card {
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+}
+
+.playing-card.selected {
+  border-color: #ff9dcc;
+  box-shadow: 0 0 0 0.25rem rgba(255, 157, 204, 0.22);
+  transform: translateY(-0.5rem) rotate(-2deg);
+}
+
+.statistics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin: 2rem 0 0;
+}
+
+.statistics-grid div {
+  padding: 1rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.08);
+  text-align: center;
+}
+
+.statistics-grid dt {
+  color: #c7bddb;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.statistics-grid dd {
+  margin: 0.35rem 0 0;
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.missing-votes {
+  margin: 1rem 0 0;
+  color: #c7bddb;
+  text-align: center;
+}
+
 .card-row {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 0.75rem;
   margin-top: 2rem;
+}
+
+.room-layout {
+  grid-template-columns: 1fr;
 }
 
 .playing-card {
